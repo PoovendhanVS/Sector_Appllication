@@ -1,0 +1,323 @@
+{% if messages %}
+<div id="message-box" class="alert">
+  <ul class="messages">
+    {% for message in messages %}
+    <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+    {% endfor %}
+  </ul>
+</div>
+{% endif %}
+
+<div class="container-fluid">
+  <div class="main-form">
+    <form action="" method="POST" autocomplete="off">
+      {% csrf_token %}
+      <div class="form-items">
+        <label for="">Name</label>
+        <input type="text" name="emp_name" id="emp_name" class="form-control" value="" placeholder="" />
+      </div>
+      <div class="form-items">
+        <label class="emp_status" for="">Martial Status</label>
+        <select name="emp_status" class="form-select" id="emp_status">
+          <option value="">Select</option>
+          {% for status in m_status %}
+          <option value="{{status}}">{{ status }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="form-items">
+            <label for="">DOB</label>
+            <input name="dob" type="date" id="dob" class="form-control" max="{% now 'Y-m-d' %}"
+              value="{% now 'Y-m-d' %}">
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="form-items">
+            <label for="">Age</label>
+            <input type="text" name="emp_age" id="emp_age" class="form-control" value="{{age}}" placeholder="" />
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <!-- Empty field -->
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="form-items">
+            <label class="emp_blood" for="">Blood Group</label>
+            <select name="emp_blood" class="form-select" id="emp_blood">
+              <option value="">Select</option>
+              {% for grp in blood_grp %}
+              <option value="{{grp}}">{{ grp }}</option>
+              {% endfor %}
+            </select>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="form-items">
+            <label class="emp_gender" for="">Gender</label>
+            <select name="gender" class="gender" id="gender">
+              <option value="">Select</option>
+              {% for gen in gender %}
+              <option value="{{gen}}">{{ gen }}</option>
+              {% endfor %}
+            </select>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="form-outline">
+            <label for="" class="textarea-lable">Extra Curricular Activities</label>
+            <textarea name="emp_act" class="form-control" id="emp_act" rows="1"></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="form-items">
+        <label class="emp_pys" for="">Disabilities</label>
+        <select name="emp_pys" class="form-select" id="emp_pys">
+          <option value="">Select</option>
+          {% for physical in emp_physical %}
+          <option value="{{physical}}">{{ physical }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <br>
+      <div class="container-below">
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="title">Present Address Details</div>
+            <div class="form-items">
+              <label class="emp_countrys" for="">Country</label>
+              <select name="emp_countrys" class="form-select" id="emp_countrys">
+                <option value="">Select</option>
+                {% for country in countrys %}
+                <option value="{{country}}">{{ country }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="form-items">
+              <label class="emp_states" for="">State</label>
+              <select name="emp_states" class="form-select" id="emp_states">
+                <option value="">Select</option>
+                {% for state in states %}
+                <option value="{{state}}">{{ state }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="form-items">
+              <label class="emp_district" for="">District</label>
+              <select name="emp_district" class="form-select" id="emp_district">
+                <option value="">Select</option>
+                {% for district in districts %}
+                <option value="{{district}}">{{ district }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="form-items">
+              <label for="">Building No</label>
+              <input type="text" name="emp_bild" id="emp_bild" class="form-control" value="" placeholder="" />
+            </div>
+            <div class="form-outline">
+              <label for="" class="textarea-lable">Street</label>
+              <textarea name="emp_street" class="form-control" id="emp_street" rows="2"></textarea>
+            </div>
+            <div class="form-outline">
+              <label for="" class="textarea-lable">Area</label>
+              <textarea name="emp_area" class="form-control" id="emp_area" cols="10" rows="2"></textarea>
+            </div>
+            <div class="form-items">
+              <label for="">Pincode</label>
+              <input name="emp_pin" type="text" name="emp_pin" id="emp_pin" class="form-control" value=""
+                placeholder="" />
+            </div>
+            <!-- <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked"/>
+                                <label class="form-check-label" for="flexCheckChecked">Same Address</label>
+                              </div> -->
+
+          </div>
+          <div class="col-sm-6">
+            <div class="title">Permanent Address Details</div>
+            <div class="form-items">
+              <label class="emp_p_countrys" for="">Country</label>
+              <select name="emp_p_countrys" class="form-select" id="emp_p_countrys">
+                <option value="">Select</option>
+                {% for country in countrys %}
+                <option value="{{country}}">{{ country }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="form-items">
+              <label class="emp_p_states" for="">State</label>
+              <select name="emp_p_states" class="form-select" id="emp_p_states">
+                <option value="">Select</option>
+                {% for state in states %}
+                <option value="{{state}}">{{ state }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="form-items">
+              <label class="emp_p_districts" for="">District</label>
+              <select name="emp_p_districts" class="form-select" id="emp_p_districts">
+                <option value="">Select</option>
+                {% for district in districts %}
+                <option value="{{district}}">{{ district }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="form-items">
+              <label for="">Building No</label>
+              <input name="emp_p_bild" type="text" name="emp_bild" id="emp_p_bild" class="form-control" value=""
+                placeholder="" />
+            </div>
+            <div class="form-outline">
+              <label for="" class="textarea-lable">Street</label>
+              <textarea name="emp_p_street" class="form-control" id="emp_p_street" rows="2"></textarea>
+            </div>
+            <div class="form-outline">
+              <label for="" class="textarea-lable">Area</label>
+              <textarea name="emp_p_area" class="form-control" id="emp_p_area" cols="10" rows="2"></textarea>
+            </div>
+            <div class="form-items">
+              <label for="">Pincode</label>
+              <input type="text" name="emp_p_pin" id="emp_p_pin" class="form-control" placeholder="" />
+            </div>
+            <div class="button-section">
+              <button class="btn btn-primary" onclick="validateForm(event)">Submit</button>
+              <a href="add_emp_personal" class="btn btn-dark cancel">Cancel</a>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+  </form>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+
+  function redirectToPage() {
+    window.location.href = "/emp_personal";
+  }
+  // Function to validate the form
+  function validateForm(event) {
+    var empName = $("#emp_name").val();
+    var empStatus = $("#emp_status").val();
+    var dob = $("#dob").val();
+    var empAge = $("#emp_age").val();
+    var empBlood = $("#emp_blood").val();
+    var empGender = $("#gender").val();
+    var empAct = $("#emp_act").val();
+    var empPys = $("#emp_pys").val();
+    var empCountryS = $("#emp_countrys").val();
+    var empStateS = $("#emp_states").val();
+    var empDistrict = $("#emp_district").val();
+    var empBild = $("#emp_bild").val();
+    var empStreet = $("#emp_street").val();
+    var empArea = $("#emp_area").val();
+    var empPin = $("#emp_pin").val();
+    var empPCountrys = $("#emp_p_countrys").val();
+    var empPStates = $("#emp_p_states").val();
+    var empPDistricts = $("#emp_p_districts").val();
+    var empPBild = $("#emp_p_bild").val();
+    var empPStreet = $("#emp_p_street").val();
+    var empPArea = $("#emp_p_area").val();
+    var empPPin = $("#emp_p_pin").val();
+    // Perform validation for each field
+    if (empName === "") {
+      alert("Please enter a name.");
+      event.preventDefault();
+    }
+    else if (empStatus === "") {
+      alert("Please select marital status.");
+      event.preventDefault();
+    }
+    else if (dob === "") {
+      alert("Please enter a date of birth.");
+      event.preventDefault();
+    }
+    else if (empAge === "") {
+      alert("Please enter an age.");
+      event.preventDefault();
+    }
+    else if (empBlood === "") {
+      alert("Please select a blood group.");
+      event.preventDefault();
+    }
+    else if (empGender === "") {
+      alert("Please select a gender.");
+      event.preventDefault();
+    }
+    else if (empAct === "") {
+      alert("Please enter extracurricular activities.");
+      event.preventDefault();
+    }
+    else if (empPys === "") {
+      alert("Please select disabilities.");
+      event.preventDefault();
+    }
+    else if (empCountryS === "") {
+      alert("Please select present country.");
+      event.preventDefault();
+    }
+    else if (empStateS === "") {
+      alert("Please select present state.");
+      event.preventDefault();
+    }
+    else if (empDistrict === "") {
+      alert("Please select present district.");
+      event.preventDefault();
+    }
+    else if (empBild === "") {
+      alert("Please enter building number for present address.");
+      event.preventDefault();
+    }
+    else if (empStreet === "") {
+      alert("Please enter street for present address.");
+      event.preventDefault();
+    }
+    else if (empArea === "") {
+      alert("Please enter area for present address.");
+      event.preventDefault();
+    }
+    else if (empPin === "") {
+      alert("Please enter pincode for present address.");
+      event.preventDefault();
+    }
+    else if (empPCountrys === "") {
+      alert("Please select permanent country.");
+      event.preventDefault();
+    }
+    else if (empPStates === "") {
+      alert("Please select permanent state.");
+      event.preventDefault();
+    }
+    else if (empPDistricts === "") {
+      alert("Please select permanent district.");
+      event.preventDefault();
+    }
+    else if (empPBild === "") {
+      alert("Please enter building number for permanent address.");
+      event.preventDefault();
+    }
+    else if (empPStreet === "") {
+      alert("Please enter street for permanent address.");
+      event.preventDefault();
+    }
+    else if (empPArea === "") {
+      alert("Please enter area for permanent address.");
+      event.preventDefault();
+    }
+    else if (empPPin === "") {
+      alert("Please enter pincode for permanent address.");
+      event.preventDefault();
+    }
+  }
+  setTimeout(function () {
+    var messageBox = document.getElementById("message-box");
+    messageBox.style.display = "none";
+  }, 2000);  // 2000 milliseconds = 2 seconds
+
+
+</script>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Item Creation</title>
+    {% load static %}
+    {% include 'access/static.html' %}
+    <link rel="stylesheet" href="{% static 'css/master_style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/master_style1.css' %}">
+    <link rel="stylesheet" href="{% static 'css/type-create.css' %}">
+</head>
+<style>
+  
+  .header-cool{
+    background-image: linear-gradient(to bottom, #3aafbb, #42b3c6, #4cb7d0, #58bbda, #65bfe3, #67c5e9, #6acbf0, #6cd1f6, #65dafa, #5fe3fc, #5decfc, #5ff5fb);
+  }
+</style>
+<body>
+    
+    <div class="container-fluid header-cool mb-2">
+        <div class="container">
+          <h1 class="title text-center">RED<span class="look">Looks</span> Organisations</h1>
+        <nav class="header">
+          <ul class="nav-link">
+            <li><a class="nav-link dropdown-toggle" href="" role="button" data-bs-toggle="dropdown">Admin</a>
+              <ul class="dropdown-menu">
+                <li><a class="nav-items" href="/admin_board">Dashboard</a></li><br>
+                <li><a class="nav-items" href="users_list">User Creation</a></li><br>
+                <li><a class="nav-items" href="signin">Login</a></li><br>
+              </ul>
+            </li>
+            <li><a class="nav-link dropdown-toggle active" href="" role="button" data-bs-toggle="dropdown">Master</a>
+              <ul class="dropdown-menu">
+                <li><a class="nav-items" href="master">Customer Creation</a></li><br>
+                <li><a class="nav-items active" href="type_create">Item Creation</a></li><br>
+              </ul>
+            </li>
+            <li><a class="nav-link dropdown-toggle" href="" role="button" data-bs-toggle="dropdown">Entry</a>
+              <ul class="dropdown-menu">
+                <li><a class="nav-link" href="/sales_home">Sales Entry</a></li>  
+              </ul>
+            </li>
+            <li class="logout-icon" style="text-align: center;"><a class="nav-link " href="signin" role="button">
+              <span class="material-symbols-outlined">
+              Logout</span></a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+      </div>
+    
+
+    <div class="container-fluid">
+        <a href="/type_create"><button class="btn btn-dark back-btn"> Back </button></a>
+    </div>
+    <div class="sub-title">
+        <h4 class="sub-heading">Item Creation</h4>
+    </div>
+
+    <div class="container-fluid">
+        <div class="main-form">
+            <form id="myForm" action="" method="POST" enctype="multipart/form-data" autocomplete="off">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-items">
+                            <label class="emp_name" for="">Item Type</label>
+                            <input type="text" name="item_type" id="item_type" class="form-control" placeholder="" />
+                        </div>
+                        <div class="form-items">
+                            <label for="">Item code</label>
+                            <input type="text" name="item_code" id="item_code" class="form-control" placeholder="" />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-items">
+                            <label for="">Item Rate</label>
+                            <input type="text" name="item_rate" id="item_rate" class="form-control" placeholder="" />
+                        </div>
+                        <div class="form-outline">
+                            <label for="" class="textarea-lable">Description</label>
+                            <textarea name="item_desc" class="form-control" id="item_desc" cols="10"
+                                rows="2"></textarea>
+                        </div>
+                        <a href="/type_create" type="button" class="btn btn-info" style="width:100px; margin-left: 23%;">Clear</a>
+                        <button type="submit" class="btn btn-primary submit-btn" style="width:100px; margin-left: 0%;" onclick="FormValidation(event)">submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    
+function FormValidation(event){
+    var type =  $("#item_type").val();
+    var rate =  $("#item_rate").val();
+    var code =  $("#item_code").val();
+    var desc =  $("#item_desc").val();
+    if(type === ""){
+        alert('Item type is required');
+        event.preventDefault();
+    }
+    else if(rate === ""){
+        alert('Item rate is required');
+        event.preventDefault();
+    }
+    else if(code === ""){
+        alert('Item code is required');
+        event.preventDefault();
+    }
+    else if(desc === ""){
+        alert('Description is required');
+        event.preventDefault();
+    }
+    else{
+        alert('Form submitted successfully')
+    }
+}
+</script>
+
+
+</body>
+
+</html>

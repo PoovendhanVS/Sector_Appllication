@@ -1,0 +1,103 @@
+
+<div class="container-fluid">
+  <div class="main-form">
+    <form id="myForm" action="" method="POST"  enctype="multipart/form-data" autocomplete="off" >
+      {% csrf_token %}  
+      <div class="row">
+        <div class="col-md-6">
+                <div class="form-items">
+                <label class="emp_name" for="">Employee Name</label>
+                <select name="gender" class="gender" id="gender" >
+                  <option value="">Select</option>
+                  {% for gen in gender %}
+                  <option value="{{gen}}">{{ gen }}</option>
+                  {% endfor %}
+                </select>
+                <input type="text" name="emp_name" id="emp_name" class="form-control" placeholder="Employee Name" />
+                </div>
+                  <!-- <div class="form-items">
+                  <label class="emp-id" for="">Employee ID</label>
+                  <select name="emp_id" class="form-control" id="" >
+                      <option value="">ID Number</option>
+                      <option value="1221">1221</option>
+                      <option value="1222">1222</option>
+                  </select>
+                </div> -->
+                  <div class="form-items">
+                  <label for="">Date of join</label>
+                  <input name="join_date" type="date" id="doj" class="form-control"  max="{% now 'Y-m-d' %}"  value="{% now 'Y-m-d' %}" >
+                </div>
+                <div class="form-items">
+                  <label for="">Designation</label>
+                  <input type="text" id="role" name="role" class="form-control" placeholder="Designation" />
+                </div>
+                <br>
+                <div class="form-items">
+                  <label class="site-name" for="">Company Name</label>
+                  <select name="site_name" class="form-select" id="site_name" >
+                    <option value="">Select</option>
+                    {% for site in site_names %}
+                      <option value="{{site}}">{{ site }}</option>
+                      {% endfor %}
+                  </select>
+                </div>
+                <div class="form-items">
+                  <label class="emp-shift" for="">Shift</label>
+                  <select name="emp_shift" class="form-select" id="emp_shift" >
+                    <option value="">Select</option>
+                    {% for shift in working_shifts %}
+                      <option value="{{ shift }}">{{ shift }}</option>
+                      {% endfor %}
+                  </select>
+                </div>
+                
+              </div>  
+                <div class="col-md-6">
+                  <div class="form-items">
+                    <label class="emp-cate" for="">Employee Category</label>
+                    <select name="emp_cate" class="form-select" id="emp_cate" >
+                      <option value="">Select</option>
+                      {% for category in employee_categories %}
+                        <option value="{{ category }}">{{ category }}</option>
+                        {% endfor %}
+                    </select>
+                  </div>
+                  
+                <div class="form-items">
+                  <label class="emp-bio" for="">Bio Matric ID</label>
+                  <input type="text" class="form-select" name="bio_id" value= "{{ bio_id }}" readonly>
+                </div>
+                <div class="form-items">
+                  <label class="emp_staff_hd" for="">Staff Head</label>
+                  <select name="emp_staff-hd" class="form-select" id="emp_head" > 
+                    <option value="">Select</option>
+                    {% for headof in head %}
+                      <option value="{{ headof }}">{{ headof }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+                
+                <div class="form-items">
+                  <label class="emp_skill" for="">Skill</label>
+                  <select name="emp_skill" class="form-select" id="emp_skill" multiple>
+                    {% for skillset in skill %}
+                      <option value="{{ skillset }}">{{ skillset }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+                
+                <div class="form-items">
+                  <label class="emp_photo" for="">Employee Photo</label>
+                  <input type="file" name="emp_photos" class="form-control" id="emp_photos"/> 
+                </div>
+                  <button type="submit" onclick="validationForm(event)" class="btn btn-primary submit">Submit</button>
+                  <a href="emp_official"class="btn btn-dark cancel">Cancel</a>
+                </div>
+              </div>
+      </form><br>
+      
+    </div>
+  </div>
+</div>
+
+ 

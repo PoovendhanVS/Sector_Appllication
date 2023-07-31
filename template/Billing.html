@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Item Creation</title>
+    {% load static %}
+    {% load bootstrap5 %}
+    {% include 'access/static.html' %}
+    <link rel="stylesheet" href="{% static 'css/master_style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/master_style1.css' %}">
+
+    <!-- bootstrap css cdn files -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css"> -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap4.min.css">
+    <!-- cuztamized files css and script files -->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
+    <!-- jquery and tables bootstrap cdn files -->
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap4.min.js"></script>
+
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        
+        .header-cool{
+            background-image: linear-gradient(to bottom, #3aafbb, #42b3c6, #4cb7d0, #58bbda, #65bfe3, #67c5e9, #6acbf0, #6cd1f6, #65dafa, #5fe3fc, #5decfc, #5ff5fb);
+          }
+        b.table-bordered th,
+        .table-bordered td {
+            border: 2px solid #44444426;
+        }
+
+        input[type=text].form-control-small {
+            width: auto;
+        }
+
+        input[type=number].form-control-small {
+            width: auto;
+        }
+
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            display: none;
+        }
+
+        input[type="number"] {
+            appearance: textfield;
+            -moz-appearance: textfield;
+        }
+        .sub-title{
+            text-align: center;
+        }
+        nav {
+          color: #000;
+        }
+    
+        nav ul {
+          list-style-type: none;
+          margin: 0;
+          padding: 0;
+        }
+    
+        nav ul li {
+          display: inline-block;
+        }
+    
+        nav ul li a {
+          width: 100%;
+          display: block;
+          color: #333;
+          text-decoration: none;
+          padding: 10px;
+        }
+        .logout-icon{
+          float: right;
+        }
+    </style>
+</head>
+
+<body>
+   
+    <div class="container-fluid header-cool mb-2">
+        <div class="container">
+          <h1 class="title text-center">RED<span class="look">Looks</span> Organisations</h1>
+        <nav class="header">
+          <ul class="nav-link">
+            <li><a class="nav-link dropdown-toggle" href="" role="button" data-bs-toggle="dropdown">Admin</a>
+              <ul class="dropdown-menu">
+                <li><a class="nav-items" href="/admin_board">Dashboard</a></li><br>
+                <li><a class="nav-items" href="users_list">User Creation</a></li><br>
+                <li><a class="nav-items" href="signin">Login</a></li><br>
+              </ul>
+            </li>
+            <li><a class="nav-link dropdown-toggle active" href="" role="button" data-bs-toggle="dropdown">Master</a>
+              <ul class="dropdown-menu">
+                <li><a class="nav-items" href="master">Customer Creation</a></li><br>
+                <li><a class="nav-items active" href="type_create">Item Creation</a></li><br>
+              </ul>
+            </li>
+            <li><a class="nav-link dropdown-toggle" href="" role="button" data-bs-toggle="dropdown">Entry</a>
+              <ul class="dropdown-menu">
+                <li><a class="nav-link" href="/sales_home">Sales Entry</a></li>  
+              </ul>
+            </li>
+          <li class="logout-icon" style="text-align: center;"><a class="nav-link " href="signin" role="button">
+            <span class="material-symbols-outlined">
+            Logout</span></a>
+          </ul>
+        </nav>
+      </div>
+      </div>
+
+    <div class="container-fluid">
+        <a href="/sales_home"><button class="btn btn-dark back-btn"> Back </button></a>
+    </div>
+    <div class="sub-title">
+        <h4 class="sub-heading">Item Billing System</h4>
+    </div>
+
+
+
+
+<form id="myForm" action="" method="POST" enctype="multipart/form-data" autocomplete="off">
+    {% csrf_token %}
+        <div class="container-fluid">
+            <div class="main-form">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-items">
+                                <label class="invoice" for="">Invoice</label>
+                                <input type="text" name="invoice" id="invoice" class="form-control" placeholder=""
+                                    value="{{order1}}" />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-items">
+                                <label for="">Billing Date</label>
+                                <input type="date" name="bill_date" id="bill_date" class="form-control"
+                                    max="{% now 'Y-m-d' %}" value="{% now 'Y-m-d' %}" />
+                            </div>
+                        </div>
+                    </div><br>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-items">
+                                <label>Name</label>
+                                <select  class="form-select" name="emp_name" id="emp_name">
+                                    <option value="">Select</option>
+                                    {% for i in data %}
+                                    <option value="{{i.id}}">{{i.emp_name}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+    
+                        <div class="col-md-3">
+                            <div class="form-items">
+                                <label for="site_name">Company Name</label>
+                                <input type="text" class="form-control" name="site_name" id="site_name" >
+                            </div>
+                        </div>
+    
+    
+    
+                        <div class="col-md-3">
+                            <div class="form-items">
+                                <label for="">Address</label>
+                                <textarea type="text" name="item_address" id="item_address" rows="3" class="form-control"
+                                    placeholder="" ></textarea>
+                            </div>
+                        </div>
+    
+                        <div class="col-md-3">
+                            <div class="form-items">
+                                <label for="">GST</label>
+                                <input type="text" id="gst_no" name="gst_no" class="form-control" placeholder="" />
+                            </div>
+                        </div>
+    
+                    </div>
+            </div>
+        </div>
+    
+
+    <div class="container-fluid">
+        <div class="main-form">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-items">
+                        <label class="item_type" for="">Item Type</label>
+                        <select  class="form-select" name="item_type" id="item_type" style="width:100%;">
+                            <option value="">Select</option>
+                            {% for i in item_types %}
+                            <option value="{{i.Item_type}}">{{i.Item_type}}{{i.id}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-items">
+                        <label for="">Item Code</label>
+                        <input type="text" name="item_code" id="item_code" class="form-control-small" placeholder="" />
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-outline">
+                        <label for="" class="textarea-lable">Item Rate</label>
+                        <input type="number" name="item_rate" id="item_rate" class="form-control-small"
+                            placeholder="" />
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-outline">
+                        <label for="" class="textarea-lable">Quantity</label>
+                        <input type="number" name="item_qty" id="item_qty" class="form-control-small"
+                            oninput="calculateTotal()" placeholder="" />
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-outline">
+                        <label for="" class="textarea-lable">Total</label>
+                        <input type="number" name="total" id="total" class="form-control-small text-right" placeholder=""
+                            readonly />
+                    </div>
+                </div>
+                
+                <input type="text" placeholder="type New" id="get_id" style="display: none;">
+                <div class="col-md-1" style="display:flex;justify-content:center;align-items: center;text-align: center;">
+                    <a class="btn btn-info add-btn" id="addButton" onclick="item_details_add(event)"
+                        style="display:block;justify-content:center;align-items: center; ">Add</a>
+                    <a class="btn btn-success edit-btn" id="editButton" onclick="item_details_edit(event)"
+                        style="justify-content:center;align-items: center; display:none">Edit</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<br>
+    <div class="container-fluid  col-lg-12 mx-auto" id="content">
+        <div class="table-responsive">
+            <table id="employee_table" style="width:100%" class="table table-striped table-bordered">
+                <thead>
+                    <tr class="text-center">
+                        <th>S.No</th>
+                        <th>Invoice ID</th>
+                        <th>Item Type</th>
+                        <th>Item Code</th>
+                        <th>Item Rate</th>
+                        <th>Qty</th>
+                        <th style="text-align: right;">Total</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="table-body">
+                </tbody>
+            </table>
+        </div>
+        <button class="btn btn-primary" style="margin-left:1% ;float: right;width:100px;" onclick="onSubmisstion(event)">Submit</button>
+        <a href="/sales_home" type="button" class="btn btn-info" style="float:right; width:100px;">Cancel</a>
+    </div>
+</form>
+
+</body>
+<script>
+    function onSubmisstion(event){
+        var invoice = document.getElementById('invoice').value;
+        
+        // Clear the input fields
+        document.getElementById('item_type').value = '';
+        document.getElementById('item_code').value = '';
+        document.getElementById('item_rate').value = '';
+        document.getElementById('item_qty').value = '';
+        document.getElementById('total').value = '';
+        alert('Invoice Details stored successfully, Invoice ID: ' + invoice)
+    }
+/*function onSubmisstion(event){
+    var name = document.getElementById('emp_name').value;
+    var type = document.getElementById('item_type').value;
+    var code = document.getElementById('item_code').value;
+    var rate = document.getElementById('item_rate').value;
+    var qty = document.getElementById('item_qty').value;
+    if (name == ''){
+        alert('Customer name is required');
+        event.preventDefault();
+    }
+    else if (type == ''){
+        alert('Item type is required');
+        event.preventDefault();
+    }
+    else if (type == ''){
+        alert('Item code is required');
+        event.preventDefault();
+    }
+    else if (type == ''){
+        alert('Item rate is required');
+        event.preventDefault();
+    }
+    else if (type == ''){
+        alert('Item quantity is required');
+        event.preventDefault();
+    }
+    else{
+        return 0;
+    }
+}*/
+
+function disableSelect(selectElement) {
+    selectElement.disabled = true;
+    }
+    
+    function item_details_edit(event) {
+        document.getElementById('addButton').style.display = 'block';
+        document.getElementById('editButton').style.display = 'none';
+        var my_id = document.getElementById('get_id').value;
+      
+        var invoice_id = document.getElementById('invoice').value;
+        var type = document.getElementById('item_type').value;
+        var code = document.getElementById('item_code').value;
+        var rate = document.getElementById('item_rate').value;
+        var qty = document.getElementById('item_qty').value;
+        var tol = document.getElementById('total').value;
+        var csrfToken = document.querySelector('input[name="csrfmiddlewaretoken"]').value;
+      
+        $.ajax({
+          url: '/update_dte/',
+          type: 'POST',
+          headers: {
+            'X-CSRFToken': csrfToken
+          },
+          data: {
+            'invoice_id':invoice_id,
+            'my_id': my_id,
+            'type': type,
+            'code': code,
+            'rate': rate,
+            'qty': qty,
+            'tol': tol,
+            'csrfmiddlewaretoken': csrfToken // Include the CSRF token in the request data
+          },
+          success: function(response) {
+            if (response) {
+                $('#table-body').html(response);
+                console.log('Success Updated Table') // Call the getTableData function to reload the table data
+      
+              // Clear the input fields
+              document.getElementById('item_type').value = '';
+              document.getElementById('item_code').value = '';
+              document.getElementById('item_rate').value = '';
+              document.getElementById('item_qty').value = '';
+              document.getElementById('total').value = '';
+            }
+            // Handle the response as needed
+          },
+          error: function(xhr, errmsg, err) {
+            console.log(errmsg);
+          }
+        });
+      }
+      
+      
+      // Add an event listener to the edit button
+      document.getElementById('editButton').addEventListener('click', item_details_edit);
+      
+
+function UpdateItem(id){
+    
+    document.getElementById('addButton').style.display = 'none';
+    document.getElementById('editButton').style.display = 'block';
+    var my_id = id;
+    $.ajax({
+        url: '/update_sales_dte/',
+        type: 'GET',
+        data: {
+            'my_id': my_id
+        },
+        success: function (response) {
+            //console.log(response.site_name)
+            $('#item_type').val(response.item_type);
+            $('#item_code').val(response.item_code);
+            $('#item_rate').val(response.item_rate);
+            $('#item_qty').val(response.Quentity);
+            $('#total').val(response.Total);
+            $('#get_id').val(response.Get_id);
+        },
+        error: function (xhr, errmsg, err) {
+            console.log(errmsg);
+        }
+    });
+    
+}
+
+
+function item_details_add(event) {
+    event.preventDefault();
+    var emp_name = $('#emp_name').val();
+    if (emp_name != ''){
+    var invoice_id = $('#invoice').val();
+    var bill_date = $('#bill_date').val();
+    var itemType = $('#item_type').val();
+    var itemCode = $('#item_code').val();
+    var itemRate = $('#item_rate').val();
+    var itemQty = $('#item_qty').val();
+    var total = $('#total').val();
+
+    // Create an object to hold the form data
+    var formData = {
+        name_id: emp_name,
+        invoice: invoice_id,
+        bill_date: bill_date,
+        item_type: itemType,
+        item_code: itemCode,
+        item_rate: itemRate,
+        item_qty: itemQty,
+        total: total,
+        csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+     };
+     
+    document.getElementById('item_type').value = '';
+    document.getElementById('item_code').value = '';
+    document.getElementById('item_rate').value = '';
+    document.getElementById('item_qty').value = '';
+    document.getElementById('total').value = '';
+    }
+     else{
+        alert('Customer name is required');
+      // Add the CSRF token
+    };
+
+    // Make an AJAX request to the backend endpoint
+    $.ajax({
+        url: '/get_item_details/',
+        type: 'POST',
+        data: formData,
+        success: function(response) {
+            // Handle the successful response here
+            // Update the HTML of a specific element with the table HTML
+            if(response){
+                $('#table-body').html(response);
+            console.log('Success Inserted Table')
+            }
+            else{
+                console.log('Fail table')
+            }
+        },
+        error: function(error) {
+            // console.log(error);
+            // Handle any errors that occur during the request
+        }
+    });
+
+}
+
+function deleteItem(id) {
+    var csrfToken = '{{ csrf_token }}';  // Include the CSRF token from Django
+
+    $.ajax({
+        url: '/del_sales_dte/' + id + '/',
+        type: 'POST',
+        headers: {
+            'X-CSRFToken': csrfToken  // Set the CSRF token in the request headers
+        },
+        success: function(response) {
+            if (response === 'Deleted') {
+                $('tr[data-id="' + id + '"]').remove();
+                document.getElementById('item_type').value = '';
+                document.getElementById('item_code').value = '';
+                document.getElementById('item_rate').value = '';
+                document.getElementById('item_qty').value = '';
+                document.getElementById('total').value = '';
+            } else {
+                alert('FALSE');
+            }
+        },
+        error: function(error) {
+            // Handle any errors that occur during the request
+            alert('Error');
+        }
+    });
+}
+
+
+
+$(document).ready(function () {
+    $('#emp_name').change(function () {
+        var selectedId = $(this).val();
+        if (selectedId !== '') {
+            updateList(selectedId);
+        } else {
+            resetFields();
+        }
+    });
+
+    function updateList(selectedId) {
+        // Make an AJAX request to fetch the corresponding data
+        $.ajax({
+            url: '/fetch_data/',
+            type: 'GET',
+            data: {
+                'selected_id': selectedId
+            },
+            success: function (response) {
+                $('#site_name').val(response.site_name);
+
+                var concatenatedValues =
+                    response.emp_area + ', ' +
+                    response.emp_street + ', ' +
+                    response.building_no + ', ' +
+                    response.emp_district + ', ' +
+                    response.emp_state + ', ' +
+                    response.emp_pincode + ', ' +
+                    response.emp_country;
+
+                $('#item_address').val(concatenatedValues);
+                $('#gst_no').val(response.emp_gst);
+            },
+            error: function (xhr, errmsg, err) {
+                console.log(errmsg);
+            }
+        });
+    }
+
+    function resetFields() {
+        $('#site_name').val('');
+        $('#item_address').val('');
+        $('#gst_no').val('');
+    }
+});
+
+
+$(document).ready(function () {
+    $('#item_type').change(function () {
+        var selectedId = $(this).val();
+        if (selectedId !== '') {
+            updateList(selectedId);
+        } else {
+            resetFields();
+        }
+    });
+
+    function updateList(selectedId) {
+        // Make an AJAX request to fetch the corresponding data
+        $.ajax({
+            url: '/fetch_type_data/',
+            type: 'GET',
+            data: {
+                'selected_id': selectedId
+            },
+            success: function (response) {
+                $('#item_code').val(response.item_code);
+                $('#item_rate').val(response.item_rate);
+            },
+            error: function (xhr, errmsg, err) {
+                console.log(errmsg);
+            }
+        });
+    }
+
+    function resetFields() {
+        $('#item_code').val('');
+        $('#item_rate').val('');
+    }
+});
+
+    function refresh_window() {
+        alert('The employee record was deleted');
+    }
+
+
+    function calculateTotal() {
+        var itemRate = parseFloat(document.getElementById('item_rate').value);
+        var itemQty = parseFloat(document.getElementById('item_qty').value);
+        var total = isNaN(itemRate) || isNaN(itemQty) ? '' : (itemRate * itemQty).toFixed(2);
+        document.getElementById('total').value = total;
+    }
+
+</script>
+
+</html>
+<!-- $('#example').DataTable();
+
+        $(function () {
+            $(document).ready(function () {
+                $('#example').DataTable();
+            });
+        }); -->

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard</title>
+
+  {% load static %}
+  {% load bootstrap5 %}
+  {% bootstrap_css %}
+  {% bootstrap_javascript %}
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+    integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <!-- <link rel="stylesheet" href="{% static 'css/admin_style.css' %}"> -->
+  <link rel="stylesheet" href="{% static 'css/master_style.css' %}">
+  <link rel="stylesheet" href="{% static 'css/admin_use_style.css' %}">
+
+
+
+  <script src="{% static 'js/script.js' %}"></script>
+
+  <style>
+
+    .header-cool{
+      background-image: linear-gradient(to bottom, #3aafbb, #42b3c6, #4cb7d0, #58bbda, #65bfe3, #67c5e9, #6acbf0, #6cd1f6, #65dafa, #5fe3fc, #5decfc, #5ff5fb);
+    }
+    nav {
+      width: 100%;
+      color: #000;
+    }
+
+    nav ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav ul li {
+      display: inline-block;
+    }
+
+    nav ul li a {
+      display: block;
+      color: #333;
+      text-decoration: none;
+      padding: 15px;
+    }
+
+    .title {
+      text-decoration: underline;
+      color: red;
+    }
+
+    span.look {
+      color: brown;
+    }
+    
+    .logout-icon{
+      float: right;
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <div class="container-fluid header-cool mb-2">
+    <div class="container">
+      <h1 class="title text-center">RED<span class="look">Looks</span> Organisations</h1>
+    <nav class="header">
+      <ul class="nav-link">
+        <li><a class="nav-link dropdown-toggle" href="" role="button" data-bs-toggle="dropdown">Admin</a>
+          <ul class="dropdown-menu">
+            <li><a class="nav-items" href="/admin_board">Dashboard</a></li><br>
+            <li><a class="nav-items" href="/users_list">User Creation</a></li><br>
+            <li><a class="nav-items" href="/signin">Login</a></li><br>
+          </ul>
+        </li>
+        <li><a class="nav-link dropdown-toggle" href="" role="button" data-bs-toggle="dropdown">Master</a>
+          <ul class="dropdown-menu">
+            <li><a class="nav-items" href="/master">Customer Creation</a></li><br>
+            <li><a class="nav-items" href="/type_create">Item Creation</a></li><br>
+          </ul>
+        </li>
+        <li><a class="nav-link dropdown-toggle" href="" role="button" data-bs-toggle="dropdown">Entry</a>
+          <ul class="dropdown-menu">
+            <li><a class="nav-link" href="/sales_home">Sales Entry</a></li>  
+          </ul>
+        </li>
+        <li class="logout-icon" style="text-align: center;"><a class="nav-link " href="/signin" role="button">
+          <span class="material-symbols-outlined">
+          Logout</span></a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+  
+</div>
+  <div class="admin_usage ">
+    <h2 class="text-center">Admin content</h2>
+    <center><h4>Session Name : <span style="color: red;">{{request.session.uname}}</span></h4></center>
+    <a href="/fileconvert"><button>DATATABLE</button></a>
+  </div>
+  <!-- Java script and jquery -->
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <script>
+    $(document).ready(function () {
+
+      $(".nav-item").click(function (e) {
+        e.preventDefault();
+
+        var url = $(this).data("url");
+
+
+        $.ajax({
+          url: url,
+          type: "GET",
+          success: function (data) {
+            $("#content").html(data);
+          },
+          error: function (xhr, textStatus, errorThrown) {
+            console.log("Error:", errorThrown);
+          }
+        });
+      });
+    });
+  </script>
+  
+</body>
+
+</html>

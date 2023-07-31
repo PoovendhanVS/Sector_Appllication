@@ -1,0 +1,190 @@
+* {
+  margin-top: 0px;
+  padding: 0px;
+}
+
+body{
+  font-size: 16px;
+}
+.admin_title {
+  text-align: center;
+  font-size: 24px;
+  background-color: #f2f2f2;
+}
+
+a {
+  text-decoration: none;
+  color: none;
+}
+
+.title {
+  text-decoration: none;
+  color: red;
+}
+
+span.look {
+  color: brown;
+}
+
+
+.main-form {
+  background-color: #f2f2f2;
+  margin: 10px;
+  padding: 20px;
+  border: 1px solid #ccc;
+}
+
+label {
+  width: 150px;
+}
+
+input[type=text],
+input[type=date],
+input[type=number],
+input[type=email],
+input[type=file] {
+  width: 250px;
+  padding: 2px 8px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+select#gender {
+  padding: 2px 8px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  border-radius: 5px;
+}
+
+select.form-control {
+  width: 250px;
+  padding: 2px 8px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+textarea.form-control {
+  width: 250px;
+  padding: 2px 8px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+
+.table-responsive {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+th,
+td {
+  padding: 10px;
+  text-align: left;
+  border: 1px solid #ccc;
+}
+
+th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+tbody tr:hover {
+  background-color: #f9f9f9;
+  transition: background-color 0.2s ease;
+}
+
+.custom-icon a {
+  margin-right: 5px;
+  color: #333;
+  text-decoration: none;
+}
+
+.custom-icon a:hover {
+  color: #007bff;
+}
+
+.fas {
+  font-size: 18px;
+}
+
+
+.title {
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+
+.title {
+  text-decoration: underline;
+  color: red;
+}
+
+span.look {
+  color: brown;
+}
+
+.offic_active {
+  font-weight: 600;
+  cursor: default;
+}
+
+.cancel {
+  margin-left: 250px;
+}
+
+.right-btn {
+  text-align: right;
+}
+
+.right-div {
+  text-align: right;
+}
+
+.left-div {
+  text-align: left;
+}
+
+.title {
+  text-decoration: underline;
+  color: red;
+}
+
+span.look {
+  color: brown;
+}
+
+.perso_active {
+  font-weight: 600;
+  cursor: default;
+}
+
+.messages,
+li {
+  list-style-type: none;
+  padding: 5px;
+}
+
+.success {
+  text-align: center;
+  font-weight: 450;
+  background-color: #dff0d8;
+  color: #3C767D;
+}
+
+.cancel {
+  margin-left: 250px;
+}

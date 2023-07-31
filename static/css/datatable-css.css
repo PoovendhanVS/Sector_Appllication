@@ -1,0 +1,75 @@
+
+        /* Table styles */
+        .table-responsible {
+            padding: 20px;
+          }
+        
+          .table {
+            width: 100%;
+            border-collapse: collapse;
+            border-spacing: 0;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+          }
+        
+          .table th,
+          .table td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ccc;
+          }
+        
+          .table th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+          }
+        
+          .table tbody tr:hover {
+            background-color: #f9f9f9;
+            transition: background-color 0.2s ease;
+          }
+        
+          /* Center align text in the table */
+        
+          /* Style for the "View" and "Action" links */
+          .custom-icon a {
+            margin-right: 5px;
+            color: #333;
+            text-decoration: none;
+          }
+        
+          .custom-icon a:hover {
+            color: #007bff;
+          }
+        
+          /* Font Awesome icon size */
+          .fas {
+            font-size: 18px;
+          }
+        
+          /* Responsive table */
+          .table-responsive {
+            overflow-x: auto;
+            font-size: 12px;
+          }
+        
+          /* Custom search bar styles */
+          .dataTables_filter input.form-control {
+            width: 200px;
+            display: inline-block;
+          }
+        
+          /* Buttons styles */
+          .dt-buttons.btn-group {
+            margin-top: 10px;
+          }
+        
+          /* Striped table rows */
+          .table-striped tbody tr:nth-of-type(odd) {
+            background-color: #f2f2f2;
+          }
+        
+          .table-striped tbody tr:nth-of-type(odd):hover {
+            background-color: #dbd8e3;
+            color: #000;
+          }

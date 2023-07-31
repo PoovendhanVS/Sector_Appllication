@@ -1,0 +1,40 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.back-btn {
+  float: left;
+}
+.sub-heading{
+  width: 100%;
+  text-align: center;
+}
+.create-btn {
+  float: right;
+}
+
+.title {
+  color: red;
+  text-decoration: underline;
+}
+
+span.look {
+  color: brown;
+}
+
+.fa-edit {
+  color: green;
+}
+
+.fa-trash {
+  color: red;
+}
+
+.fa-file-text-o {
+  color: red;
+}
+
+.custom-icon {
+  text-align: center;
+}

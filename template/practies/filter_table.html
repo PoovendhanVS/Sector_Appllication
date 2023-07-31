@@ -1,0 +1,47 @@
+<!-- multiselect_template.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MultiSelect List Example</title>
+</head>
+<body>
+    <h2>Select column fields:</h2>
+    <select id="columnSelect" multiple>
+        <option value="emp_name">emp_name 1</option>
+        <option value="date_of_join">date_of_join 1</option>
+        <option value="role">role 1</option>
+        <!-- Add more options for other fields as needed -->
+    </select>
+
+    <button id="fetchColumnsButton">Fetch Column Field Names</button>
+
+    <div id="result">
+        <!-- Selected column field names will be displayed here -->
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#fetchColumnsButton').on('click', function() {
+                var selectedFields = $('#columnSelect').val();
+                $.ajax({
+                    type: 'POST',
+                    url: '{% url "fetch_datatable_columns" %}',
+                    data: {
+                        'selected_fields[]': selectedFields,
+                        'csrfmiddlewaretoken': '{{ csrf_token }}'
+                    },
+                    dataType: 'json',
+                    success: function(data) {
+                        var columns = data.columns;
+                        $('#result').html('<h2>Selected Column Field Names:</h2><ul><li>' + columns.join('</li><li>') + '</li></ul>');
+                    },
+                    error: function(xhr, textStatus, errorThrown) {
+                        alert('Error fetching column names.'+  ' ' + xhr +  ' ' + errorThrown + ' ' + textStatus);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

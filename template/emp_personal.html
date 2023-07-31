@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Employee Personal Details</title>
+  <style>
+    .right-btn {
+      text-align: right;
+    }
+
+    .title {
+      text-decoration: underline;
+      color: red;
+    }
+
+    span.look {
+      color: brown;
+    }
+  </style>
+  {% include 'access/static.html' %}
+</head>
+
+<body>
+  {% include 'access/master_head.html' %}
+
+  <div class="container-fluid right-btn">
+    <a href="/admin_board"><button class="btn btn-dark"> Back </button></a>
+    <a href="add_emp_personal"><button class="btn btn-danger">Add</button></a>
+  </div>
+  <section class="intro">
+    <div class="bg-image h-100" style="background-color: #f5f7fa;">
+      <div class="mask d-flex align-items-center h-100">
+        <div class="container-fluid">
+          <div class="row justify-content-center">
+            <div class="col-12">
+              <div class="card">
+                <div class="card-body p-0">
+                  <div class="table-responsive table-scroll" data-mdb-perfect-scrollbar="true"
+                    style="position: relative; height: 700px">
+                    <table class="table table-striped mb-0">
+                      <thead style="background-color: #002d72;">
+                        <tr style="color: #fff;">
+                          <th scope="col">S.No</th>
+                          <th scope="col">Employee Name</th>
+                          <th scope="col">Gender</th>
+                          <th scope="col">Date of Birth</th>
+                          <th scope="col">Age</th>
+                          <th scope="col">Martial Status</th>
+                          <th scope="col">Blood Group</th>
+                          <th scope="col">Curricular Activities</th>
+                          <th scope="col">Disability</th>
+                          <th scope="col">Present Address</th>
+                          <th scope="col">Permanent Address</th>
+                          <th scope="col">Edit</th>
+                          <th scope="col">Drop</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% for personal in fetchall %}
+                        <tr>
+                          <td>{{forloop.counter}}</td>
+                          <td>{{personal.emp_name}}</td>
+                          <td>{{personal.gender}}</td>
+                          <td>{{personal.date_of_birth}}</td>
+                          <td>{{personal.emp_age}}</td>
+                          <td>{{personal.martial}}</td>
+                          <td>{{personal.blood_grp}}</td>
+                          <td>{{personal.activities}}</td>
+                          <td>{{personal.disability}}</td>
+                          <td>{{personal.buliding_no}}, {{personal.emp_street}},
+                            {{personal.emp_area}}, {{personal.emp_district}},
+                            {{personal.emp_state}}, {{personal.emp_pincode}},
+                            {{personal.emp_country}}</td>
+                          <td>{{personal.p_buliding_no}},
+                            {{personal.emp_p_street}}, {{personal.emp_p_area}},
+                            {{personal.emp_p_district}}, {{personal.emp_p_state}},
+                            {{personal.emp_p_pincode}}, {{personal.emp_p_country}}</td>
+                          <td><a href="update_emp_official/{{offic.id}}"><button
+                                class="btn btn-warning">EDIT</button></a></td>
+                          <td><button class="btn btn-danger">DELETE</button></td>
+                        </tr>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <script>
+    document.getElementById('dob').valueAsDate = new Date();
+// Refresh the page every 4s
+
+  </script>
+</body>
+
+</html>
