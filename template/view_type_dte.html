@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Item Creation</title>
+    {% load static %}
+    {% include 'access/static.html' %}
+    <link rel="stylesheet" href="{% static 'css/master_style1.css' %}">
+    <link rel="stylesheet" href="{% static 'css/master_style.css' %}">
+    <style>
+      .header-cool{
+        background-image: linear-gradient(to bottom, #3aafbb, #42b3c6, #4cb7d0, #58bbda, #65bfe3, #67c5e9, #6acbf0, #6cd1f6, #65dafa, #5fe3fc, #5decfc, #5ff5fb);
+        }
+        .content{
+            text-align: center;
+            justify-content: center;
+        }
+        table{
+            width: 100%;
+        }
+        td{
+            text-align: right;
+        }
+        nav {
+          color: #000;
+        }
+    
+        nav ul {
+          list-style-type: none;
+          margin: 0;
+          padding: 0;
+        }
+    
+        nav ul li {
+          display: inline-block;
+        }
+    
+        nav ul li a {
+          width: 100%;
+          display: block;
+          color: #333;
+          text-decoration: none;
+          padding: 10px;
+        }
+        .logout-icon{
+          float: right;
+        }
+    </style>
+</head>
+
+<body>
+    
+    <div class="container-fluid header-cool mb-2">
+        <div class="container">
+          <h1 class="title text-center">RED<span class="look">Looks</span> Organisations</h1>
+        <nav class="header">
+          <ul class="nav-link">
+            <li><a class="nav-link dropdown-toggle" href="" role="button" data-bs-toggle="dropdown">Admin</a>
+              <ul class="dropdown-menu">
+                <li><a class="nav-items" href="/admin_board">Dashboard</a></li><br>
+                <li><a class="nav-items" href="/users_list">User Creation</a></li><br>
+                <li><a class="nav-items" href="/signin">Login</a></li><br>
+              </ul>
+            </li>
+            <li><a class="nav-link dropdown-toggle active" href="" role="button" data-bs-toggle="dropdown">Master</a>
+              <ul class="dropdown-menu">
+                <li><a class="nav-items" href="/master">Customer Creation</a></li><br>
+                <li><a class="nav-items active" href="/type_create">Item Creation</a></li><br>
+              </ul>
+            </li>
+            <li><a class="nav-link dropdown-toggle" href="" role="button" data-bs-toggle="dropdown">Entry</a>
+              <ul class="dropdown-menu">
+                <li><a class="nav-link" href="/sales_home">Sales Entry</a></li>  
+              </ul>
+            </li>
+          <li class="logout-icon" style="text-align: center;"><a class="nav-link " href="/signin" role="button">
+            <span class="material-symbols-outlined">
+            Logout</span></a>
+          </ul>
+        </nav>
+      </div>
+      </div>
+
+    <div class="container-fluid">
+        <a href="/type_create"><button class="btn btn-dark back-btn"> Back </button></a>
+    </div>
+    <div class="sub-title">
+        <h4 class="sub-heading">Overview Type Creation</h4>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4 content" >
+                <table>
+                    <tr>
+                        <th colspan="2">Properties ID : {{view.id}}</th>
+                    </tr>
+                    <tr>
+                        <th>Item Type</th>
+                        <td>{{view.Item_type}}</td>
+                    </tr>
+                    <tr>
+                        <th>Item Code</th>
+                        <td>{{view.Item_code}}</td>
+                    </tr>
+                    <tr>
+                        <th>Item Rate</th>
+                        <td>Price: &#8377; {{view.Item_rate}}</td>
+                    </tr>
+                    <tr>
+                        <th>Description</th>
+                        <td>{{view.Description}}</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+    </div>
+
+
+</body>
+
+</html>

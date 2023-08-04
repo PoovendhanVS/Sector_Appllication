@@ -201,7 +201,7 @@
               <br>
               <div class="form-items">
                 <label class="site-name" for="">Company Name</label>
-                <select name="site_name" class="form-select" id="site_name">
+                <select name="site_name" class="form-control" id="site_name">
                   <option value="">Select</option>
                   {% for site in site_names %}
                   <option value="{{site}}">{{ site }}</option>
@@ -217,7 +217,7 @@
             <div class="col-md-6">
               <div class="form-items">
                 <label class="emp-cate" for="">Employee Category</label>
-                <select name="emp_cate" class="form-select" id="emp_cate">
+                <select name="emp_cate" class="form-control" id="emp_cate">
                   <option value="">Select</option>
                   {% for category in employee_categories %}
                   <option value="{{ category }}">{{ category }}</option>
@@ -231,7 +231,7 @@
               </div>
               <div class="form-items">
                 <label class="emp_staff_hd" for="">Staff Head</label>
-                <select name="emp_staff_hd" class="form-select" id="emp_head">
+                <select name="emp_staff_hd" class="form-control" id="emp_head">
                   <option value="">Select</option>
                   {% for headof in head %}
                   <option value="{{ headof }}">{{ headof }}</option>
@@ -241,7 +241,7 @@
 
               <div class="form-items">
                 <label class="emp_skill" for="">Skill</label>
-                <select name="emp_skill" class="form-select" id="emp_skill" multiple>
+                <select name="emp_skill" class="form-control" id="emp_skill" multiple>
                   {% for skillset in skill %}
                   <option value="{{ skillset }}">{{ skillset }}</option>
                   {% endfor %}
@@ -272,7 +272,7 @@
             <h4 class="sub_title" style="color:#272343;">Personal Details</h4>
             <div class="form-items">
               <label class="emp_status" for="">Martial Status</label>
-              <select name="emp_status" class="form-select" id="emp_status">
+              <select name="emp_status" class="form-control" id="emp_status">
                 <option value="">Select</option>
                 {% for status in m_status %}
                 <option value="{{status}}">{{ status }}</option>
@@ -302,7 +302,7 @@
               <div class="col-sm-4">
                 <div class="form-items">
                   <label class="emp_blood" for="">Blood Group</label>
-                  <select name="emp_blood" class="form-select" id="emp_blood">
+                  <select name="emp_blood" class="form-control" id="emp_blood">
                     <option value="">Select</option>
                     {% for grp in blood_grp %}
                     <option value="{{grp}}">{{ grp }}</option>
@@ -331,7 +331,7 @@
             </div>
             <div class="form-items">
               <label class="emp_pys" for="">Disabilities</label>
-              <select name="emp_pys" class="form-select" id="emp_pys">
+              <select name="emp_pys" class="form-control" id="emp_pys">
                 <option value="">Select</option>
                 {% for physical in emp_physical %}
                 <option value="{{physical}}">{{ physical }}</option>
@@ -345,7 +345,7 @@
                   <div class="title">Present Address Details</div>
                   <div class="form-items">
                     <label class="emp_countrys" for="">Country</label>
-                    <select name="emp_countrys" class="form-select" id="emp_countrys">
+                    <select name="emp_countrys" class="form-control" id="emp_countrys">
                       <option value="">Select</option>
                       {% for country in countrys %}
                       <option value="{{country}}">{{ country }}</option>
@@ -354,7 +354,7 @@
                   </div>
                   <div class="form-items">
                     <label class="emp_states" for="">State</label>
-                    <select name="emp_states" class="form-select" id="emp_states">
+                    <select name="emp_states" class="form-control" id="emp_states">
                       <option value="">Select</option>
                       {% for state in states %}
                       <option value="{{state}}">{{ state }}</option>
@@ -363,7 +363,7 @@
                   </div>
                   <div class="form-items">
                     <label class="emp_district" for="">District</label>
-                    <select name="emp_district" class="form-select" id="emp_district">
+                    <select name="emp_district" class="form-control" id="emp_district">
                       <option value="">Select</option>
                       {% for district in districts %}
                       <option value="{{district}}">{{ district }}</option>
@@ -397,7 +397,7 @@
                   <div class="title">Permanent Address Details</div>
                   <div class="form-items">
                     <label class="emp_p_countrys" for="">Country</label>
-                    <select name="emp_p_countrys" class="form-select" id="emp_p_countrys">
+                    <select name="emp_p_countrys" class="form-control" id="emp_p_countrys">
                       <option value="">Select</option>
                       {% for country in countrys %}
                       <option value="{{country}}">{{ country }}</option>
@@ -406,7 +406,7 @@
                   </div>
                   <div class="form-items">
                     <label class="emp_p_states" for="">State</label>
-                    <select name="emp_p_states" class="form-select" id="emp_p_states">
+                    <select name="emp_p_states" class="form-control" id="emp_p_states">
                       <option value="">Select</option>
                       {% for state in states %}
                       <option value="{{state}}">{{ state }}</option>
@@ -415,7 +415,7 @@
                   </div>
                   <div class="form-items">
                     <label class="emp_p_districts" for="">District</label>
-                    <select name="emp_p_districts" class="form-select" id="emp_p_districts">
+                    <select name="emp_p_districts" class="form-control" id="emp_p_districts">
                       <option value="">Select</option>
                       {% for district in districts %}
                       <option value="{{district}}">{{ district }}</option>

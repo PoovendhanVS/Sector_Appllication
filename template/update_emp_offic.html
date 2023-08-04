@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Employee Official Details Update</title>
+  {% load static %}
+  {% include 'access/static.html' %}
+  <link rel="stylesheet" href="{% static 'css/master_style.css' %}">
+  <link rel="stylesheet" href="{% static 'css/master_style1.css' %}">
+  <link rel="stylesheet" href="{% static 'css/master-new.css' %}">
+  <style>
+    .header-cool{
+      background-image: linear-gradient(to bottom, #3aafbb, #42b3c6, #4cb7d0, #58bbda, #65bfe3, #67c5e9, #6acbf0, #6cd1f6, #65dafa, #5fe3fc, #5decfc, #5ff5fb);
+      }
+    .title {
+      padding: 20px;
+      text-align: center;
+    }
+
+    .messages,
+    li {
+      list-style-type: none;
+      padding: 5px;
+    }
+
+    .success {
+      text-align: center;
+      font-weight: 450;
+      background-color: #dff0d8;
+      color: #3C767D;
+    }
+
+    .cancel-btn {
+      margin-left: 250px;
+    }
+    nav {
+      color: #000;
+    }
+
+    nav ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav ul li {
+      display: inline-block;
+    }
+
+    nav ul li a {
+      width: 100%;
+      display: block;
+      color: #333;
+      text-decoration: none;
+      padding: 10px;
+    }
+    .logout-icon{
+      float: right;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container-fluid header-cool mb-2">
+    <div class="container">
+      <h1 class="title text-center">RED<span class="look">Looks</span> Organisations</h1>
+    <nav class="header">
+      <ul class="nav-link">
+        <li><a class="nav-link dropdown-toggle" href="" role="button" data-bs-toggle="dropdown">Admin</a>
+          <ul class="dropdown-menu">
+            <li><a class="nav-items" href="/admin_board">Dashboard</a></li><br>
+            <li><a class="nav-items" href="/users_list">Item Creation</a></li><br>
+            <li><a class="nav-items" href="/signin">Login</a></li><br>
+          </ul>
+        </li>
+        <li><a class="nav-link dropdown-toggle active" href="" role="button" data-bs-toggle="dropdown">Master</a>
+          <ul class="dropdown-menu">
+            <li><a class="nav-items" href="/master">Customer Creation</a></li><br>
+            <li><a class="nav-items active" href="/type_create">Item Creation</a></li><br>
+          </ul>
+        </li>
+        <li><a class="nav-link dropdown-toggle" href="" role="button" data-bs-toggle="dropdown">Entry</a>
+          <ul class="dropdown-menu">
+            <li><a class="nav-link" href="/sales_home">Sales Entry</a></li>  
+          </ul>
+        </li>
+        <li class="logout-icon" style="text-align: center;"><a class="nav-link " href="/signin" role="button">
+          <span class="material-symbols-outlined">
+          Logout</span></a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+  </div>
+  <a href="/master"><button class="btn btn-dark m-3"> Back </button></a>
+  <!-- {% if messages %}
+  <div id="message-box" class="alert">
+      <ul class="messages">
+          {% for message in messages %}
+              <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+          {% endfor %}
+      </ul>
+  </div>
+{% endif %}  -->
+
+  <div class="container-fluid">
+    <div class="main-form">
+      <div class="row">
+        <div class="col-md-6">
+
+          <form action="" method="POST" enctype="multipart/form-data" autocomplete="off">
+            {% csrf_token %}
+            <div class="form-items">
+              <label class="emp_name" for="">Employee Name</label>
+              <select name="emp_gender" class="gender" id="emp_gender">
+                <option value="">Select</option>
+                {% for gen in gender %}
+                <option value="{{gen}}" {% if gen == data.emp_gender %}selected{% endif %}>{{ gen }}</option>
+                {% endfor %}
+              </select>
+              <input type="text" name="emp_name" id="emp_name" value="{{data.emp_name}}" class="form-control"
+                placeholder="Employee Name" />
+            </div>
+
+            <!-- <div class="form-items">
+              <label class="emp-id" for="">Employee ID</label>
+              <select name="emp_id" class="form-control" id="" required>
+                  <option value="">ID Number</option>
+                  <option value="1221">1221</option>
+                  <option value="1222">1222</option>
+              </select>
+            </div> -->
+
+            <div class="form-items">
+              <label for="">Date of join</label>
+              <input name="join_date" type="date" id="doj" class="form-control"
+                value="{{ data.date_of_join|date:'Y-m-d' }}">
+            </div>
+            <div class="form-items">
+              <label for="">Designation</label>
+              <input type="text" id="role" name="role" class="form-control" value="{{data.role}}"
+                placeholder="Designation" />
+            </div>
+
+            <br>
+            <div class="form-items">
+              <label class="site-name" for="">Site Name</label>
+              <select name="site_name" class="form-select" id="site_name">
+                <option value="">Select</option>
+                {% for site in site_names %}
+                <option value="{{site}}" {% if site == data.site_name %}selected{% endif %}>{{ site }}</option>
+                {% endfor %}
+              </select>
+            </div>
+
+            <!-- <div class="form-items">
+              <label class="emp-shift" for="">Shift</label>
+              <select name="emp_shift" class="form-select" id="emp_shift">
+                <option value="">Select</option>
+                {% for shift in working_shifts %}
+                <option value="{{ shift }}" {% if shift == data.emp_shift %}selected{% endif %}>{{ shift }}</option>
+                {% endfor %}
+              </select>
+            </div> -->
+            <div class="form-items">
+              <label class="gst" for="">GST</label>
+              <input type="text" name="gst" id="gst" class="form-control"
+                placeholder="" value="{{data.emp_shift}}" />
+            </div>
+
+        </div>
+        <div class="col-md-6">
+
+          <div class="form-items">
+            <label class="emp-cate" for="">Employee Category</label>
+            <select name="emp_cate" class="form-select" id="emp_cate">
+              <option value="">Select</option>
+              {% for category in employee_categories %}
+              <option value="{{ category }}" {% if category == data.emp_cate %}selected{% endif %}>{{ category }}</option>
+              {% endfor %}
+            </select>
+          </div>
+
+          <div class="form-items">
+            <label class="emp-bio" for="">Bio Matric ID</label>
+            <input type="text" class="form-control" name="bio_id" value="{{ data.emp_bio }}" readonly>
+          </div>
+          <div class="form-items">
+            <label class="emp_staff_hd" for="">Staff Head</label>
+            <select name="emp_staff-hd" class="form-select" id="emp_head">
+              <option value="">Select</option>
+              {% for headof in head %}
+              <option value="{{ headof }}" {% if headof == data.emp_head %}selected{% endif %}>{{ headof }}</option>
+              {% endfor %}
+            </select> 
+          </div>
+
+          <div class="form-items">
+            <label class="emp_skill" for="">Skill</label>
+            <select name="emp_skill" class="form-select" id="emp_skill" multiple>
+              {% for skillset in skill %}
+              <option value="{{ skillset }}" {% if skillset in data.emp_skill %}selected{% endif %}>{{ skillset }}
+              </option>
+              {% endfor %}
+            </select>
+          </div>
+          <script>
+            var loadFile = function (event) {
+              var output = document.getElementById('output');
+              output.src = URL.createObjectURL(event.target.files[0]);
+              output.onload = function () {
+                URL.revokeObjectURL(output.src) // free memory
+              }
+            };
+          </script>
+          <div class="form-items">
+            <label class="emp_photo" for="">Employee Photo</label>
+            <input type="file" accept="image/*" onchange="loadFile(event)" name="emp_p_photos" class="form-control"
+              id="emp_p_photos" value="{{ data.emp_img }}" />
+          </div>
+          <div class="show_photo" style="margin-left: 45%;"><img src="/{{ data.emp_img }}" id="output" width="100"
+              height="100"></div>
+
+        </div>
+      </div>
+
+
+      <div id="form_2" style="display: block;">
+        <div class="sub-form">
+          <h4 class="sub_title" style="color:#272343;">Personal Details</h4>
+          <div class="form-items">
+            <label class="emp_status" for="">Martial Status</label>
+            <select name="emp_status" class="form-select" id="emp_status">
+              <option value="">Select</option>
+              {% for status in m_status %}
+              <option value="{{status}}" {% if status in data.martial %}selected{% endif %}>{{ status }}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="row">
+            <div class="col-sm-4">
+              <div class="form-items">
+                <label for="">DOB</label>
+                <input name="dob" type="date" id="dob" class="form-control" max=""
+                  value="{{ data.date_of_birth|date:'Y-m-d' }}">
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="form-items">
+                <label for="">Age</label>
+                <input type="text" name="emp_age" id="emp_age" class="form-control" value="{{data.emp_age}}"
+                  placeholder="" />
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <!-- Empty field -->
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-4">
+              <div class="form-items">
+                <label class="emp_blood" for="">Blood Group</label>
+                <select name="emp_blood" class="form-select" id="emp_blood">
+                  <option value="">Select</option>
+                  {% for grp in blood_grp %}
+                  <option value="{{grp}}" {% if grp in data.blood_grp %}selected{% endif %}>{{ grp }}</option>
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="form-items">
+                <label class="gender" for="">Gender</label>
+                <select name="gender" class="gender" id="gender">
+                  <option value="">Select</option>
+                  {% for gen in full_gender %}
+                  <option value="{{gen}}" {% if gen in data.gender %}selected{% endif %}>{{ gen }}</option>
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
+
+            <div class="col-sm-4">
+              <div class="form-outline">
+                <label for="" class="textarea-lable">Extra Curricular Activities</label>
+                <textarea name="emp_act" class="form-control" id="emp_act" rows="1"
+                  value="">{{data.activities}}</textarea>
+              </div>
+            </div>
+          </div>
+          <div class="form-items">
+            <label class="emp_pys" for="">Disabilities</label>
+            <select name="emp_pys" class="form-select" id="emp_pys">
+              <option value="">Select</option>
+              {% for physical in emp_physical %}
+              <option value="{{physical}}" {% if physical in data.disability %}selected{% endif %}>{{ physical }}
+              </option>
+              {% endfor %}
+            </select>
+          </div>
+          <br>
+          <div class="container-below">
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="title">Present Address Details</div>
+                <div class="form-items">
+                  <label class="emp_countrys" for="">Country</label>
+                  <select name="emp_countrys" class="form-select" id="emp_countrys">
+                    <option value="">Select</option>
+                    {% for country in countrys %}
+                    <option value="{{country}}" {% if country in data.emp_country %}selected{% endif %}>{{ country }}
+                    </option>
+                    {% endfor %}
+                  </select>
+                </div>
+                <div class="form-items">
+                  <label class="emp_states" for="">State</label>
+                  <select name="emp_states" class="form-select" id="emp_states">
+                    <option value="">Select</option>
+                    {% for state in states %}
+                    <option value="{{state}}" {% if state in data.emp_state %}selected{% endif %}>{{ state }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+                <div class="form-items">
+                  <label class="emp_district" for="">District</label>
+                  <select name="emp_district" class="form-select" id="emp_district">
+                    <option value="">Select</option>
+                    {% for district in districts %}
+                    <option value="{{district}}" {% if district in data.emp_district %}selected{% endif %}>{{ district }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+                <div class="form-items">
+                  <label for="">Building No</label>
+                  <input type="text" name="emp_bild" id="emp_bild" class="form-control" value="{{data.buliding_no}}"
+                    placeholder="" />
+                </div>
+                <div class="form-outline">
+                  <label for="" class="textarea-lable">Street</label>
+                  <textarea name="emp_street" class="form-control" id="emp_street" rows="2"
+                    value="">{{data.emp_street}}</textarea>
+                </div>
+                <div class="form-outline">
+                  <label for="" class="textarea-lable">Area</label>
+                  <textarea name="emp_area" class="form-control" id="emp_area" cols="10" rows="2"
+                    value="">{{data.emp_area}}</textarea>
+                </div>
+                <div class="form-items">
+                  <label for="">Pincode</label>
+                  <input name="emp_pin" type="text" name="emp_pin" id="emp_pin" class="form-control"
+                    value="{{data.emp_pincode}}" placeholder="" />
+                </div>
+                <div class="form-check" style="margin-left: 40%;">
+                  <input class="form-check-input" type="checkbox" id="same" value="" onchange="sameAddress()" />
+                  <label class="form-check-label" for="flexCheckChecked">Same Address</label>
+                </div>
+
+              </div>
+              <div class="col-sm-6">
+                <div class="title">Permanent Address Details</div>
+                <div class="form-items">
+                  <label class="emp_p_countrys" for="">Country</label>
+                  <select name="emp_p_countrys" class="form-select" id="emp_p_countrys">
+                    <option value="">Select</option>
+                    {% for country in countrys %}
+                    <option value="{{country}}" {% if country in data.emp_p_country %}selected{% endif %}>{{ country }}
+                    </option>
+                    {% endfor %}
+                  </select>
+                </div>
+                <div class="form-items">
+                  <label class="emp_p_states" for="">State</label>
+                  <select name="emp_p_states" class="form-select" id="emp_p_states">
+                    <option value="">Select</option>
+                    {% for state in states %}
+                    <option value="{{state}}" {% if state in data.emp_p_state %}selected{% endif %}>{{ state }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+                <div class="form-items">
+                  <label class="emp_p_districts" for="">District</label>
+                  <select name="emp_p_districts" class="form-select" id="emp_p_districts">
+                    <option value="">Select</option>
+                    {% for district in districts %}
+                    <option value="{{district}}" {% if district in data.emp_p_district %}selected{% endif %}>{{ district }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+                <div class="form-items">
+                  <label for="">Building No</label>
+                  <input name="emp_p_bild" type="text" name="emp_bild" id="emp_p_bild" class="form-control"
+                    value="{{data.p_buliding_no}}" placeholder="" />
+                </div>
+                <div class="form-outline">
+                  <label for="" class="textarea-lable">Street</label>
+                  <textarea name="emp_p_street" class="form-control" id="emp_p_street" rows="2"
+                    value="">{{data.emp_p_street}}</textarea>
+                </div>
+                <div class="form-outline">
+                  <label for="" class="textarea-lable">Area</label>
+                  <textarea name="emp_p_area" class="form-control" id="emp_p_area" cols="10" rows="2"
+                    value="">{{data.emp_p_area}}</textarea>
+                </div>
+                <div class="form-items">
+                  <label for="">Pincode</label>
+                  <input type="text" name="emp_p_pin" id="emp_p_pin" class="form-control" value="{{data.emp_p_pincode}}"
+                    placeholder="" />
+                </div>
+                <button class="btn btn-success" style="margin-left: 320px;"
+                  onclick="validateForm(event)">Update</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </form>
+    </div>
+  </div>
+  </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <script>
+    function validateForm(event) {
+      var empGen = $("#emp_gender").val();
+      var empName = $("#emp_name").val();
+      var empDoj = $("#doj").val();
+      var empRole = $("#role").val();
+      var empSite = $("#site_name").val();
+      var empShift = $("#gst").val();
+      var empCate = $("#emp_cate").val();
+      var empHead = $("#emp_head").val();
+      var empSkill = $("#emp_skill").val();
+      var empPhoto = $("#emp_photos").val();
+
+      var empStatus = $("#emp_status").val();
+      var dob = $("#dob").val();
+      var empAge = $("#emp_age").val();
+      var empBlood = $("#emp_blood").val();
+      var empGender = $("#gender").val();
+      var empAct = $("#emp_act").val();
+      var empPys = $("#emp_pys").val();
+      var empCountryS = $("#emp_countrys").val();
+      var empStateS = $("#emp_states").val();
+      var empDistrict = $("#emp_district").val();
+      var empBild = $("#emp_bild").val();
+      var empStreet = $("#emp_street").val();
+      var empArea = $("#emp_area").val();
+      var empPin = $("#emp_pin").val();
+      var empPCountrys = $("#emp_p_countrys").val();
+      var empPStates = $("#emp_p_states").val();
+      var empPDistricts = $("#emp_p_districts").val();
+      var empPBild = $("#emp_p_bild").val();
+      var empPStreet = $("#emp_p_street").val();
+      var empPArea = $("#emp_p_area").val();
+      var empPPin = $("#emp_p_pin").val();
+
+
+
+      if (empGen === '') {
+        alert('Please select a gender');
+        event.preventDefault();
+      }
+      else if (empName === '') {
+        alert('Please enter a employee name');
+        event.preventDefault();
+      }
+      else if (empDoj === "") {
+        alert("Please select a date of jioning.");
+        event.preventDefault();
+      }
+      else if (empRole === "") {
+        alert("Please enter designation.");
+        event.preventDefault();
+      }
+      else if (empSite === "") {
+        alert("Please select a Company name.");
+        event.preventDefault();
+      }
+      else if (empShift === "") {
+        alert("Please select an GST number.");
+        event.preventDefault();
+      }
+      else if (empCate === "") {
+        alert("Please select a employee category.");
+        event.preventDefault();
+      }
+      else if (empHead === "") {
+        alert("Please select a staff head.");
+        event.preventDefault();
+      }
+      else if (empSkill.length < 1) {
+        alert("Please select a skill.");
+        event.preventDefault();
+      }
+      else if (empPhoto === "") {
+        alert("Please insert a employee photo.");
+        event.preventDefault();
+      }
+      // Perform validation for each field
+      else if (empStatus === "") {
+        alert("Please select marital status.");
+        event.preventDefault();
+      }
+      else if (dob === "") {
+        alert("Please enter a date of birth.");
+        event.preventDefault();
+      }
+      else if (empAge === "") {
+        alert("Please enter an age.");
+        event.preventDefault();
+      }
+      else if (empBlood === "") {
+        alert("Please select a blood group.");
+        event.preventDefault();
+      }
+      else if (empGender === "") {
+        alert("Please select a gender.");
+        event.preventDefault();
+      }
+      else if (empAct === "") {
+        alert("Please enter extracurricular activities.");
+        event.preventDefault();
+      }
+      else if (empPys === "") {
+        alert("Please select disabilities.");
+        event.preventDefault();
+      }
+      else if (empCountryS === "") {
+        alert("Please select present country.");
+        event.preventDefault();
+      }
+      else if (empStateS === "") {
+        alert("Please select present state.");
+        event.preventDefault();
+      }
+      else if (empDistrict === "") {
+        alert("Please select present district.");
+        event.preventDefault();
+      }
+      else if (empBild === "") {
+        alert("Please enter building number for present address.");
+        event.preventDefault();
+      }
+      else if (empStreet === "") {
+        alert("Please enter street for present address.");
+        event.preventDefault();
+      }
+      else if (empArea === "") {
+        alert("Please enter area for present address.");
+        event.preventDefault();
+      }
+      else if (empPin === "") {
+        alert("Please enter pincode for present address.");
+        event.preventDefault();
+      }
+      else if (empPCountrys === "") {
+        alert("Please select permanent country.");
+        event.preventDefault();
+      }
+      else if (empPStates === "") {
+        alert("Please select permanent state.");
+        event.preventDefault();
+      }
+      else if (empPDistricts === "") {
+        alert("Please select permanent district.");
+        event.preventDefault();
+      }
+      else if (empPBild === "") {
+        alert("Please enter building number for permanent address.");
+        event.preventDefault();
+      }
+      else if (empPStreet === "") {
+        alert("Please enter street for permanent address.");
+        event.preventDefault();
+      }
+      else if (empPArea === "") {
+        alert("Please enter area for permanent address.");
+        event.preventDefault();
+      }
+      else if (empPPin === "") {
+        alert("Please enter pincode for permanent address.");
+        event.preventDefault();
+      }
+      else {
+        alert('Employee official details updated successfully.')
+      }
+    }
+
+
+    function sameAddress() {
+      if (document.getElementById(
+        "same").checked) {
+        document.getElementById(
+          "emp_p_countrys").value =
+          document.getElementById(
+            "emp_countrys").value;
+
+        document.getElementById(
+          "emp_p_states").value =
+          document.getElementById(
+            "emp_states").value;
+
+        document.getElementById(
+          "emp_p_districts").value =
+          document.getElementById(
+            "emp_district").value;
+
+        document.getElementById(
+          "emp_p_bild").value =
+          document.getElementById(
+            "emp_bild").value;
+
+        document.getElementById(
+          "emp_p_street").value =
+          document.getElementById(
+            "emp_street").value;
+
+        document.getElementById(
+          "emp_p_area").value =
+          document.getElementById(
+            "emp_area").value;
+
+        document.getElementById(
+          "emp_p_pin").value =
+          document.getElementById(
+            "emp_pin").value;
+      }
+    }
+    setTimeout(function () {
+      var messageBox = document.getElementById("message-box");
+      messageBox.style.display = "none";
+    }, 2000);  // 2000 milliseconds = 2 seconds
+
+    document.getElementById('doj').valueAsDate = new Date();
+
+  </script>
+</body>
+
+</html>
