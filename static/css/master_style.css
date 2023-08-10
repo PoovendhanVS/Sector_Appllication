@@ -68,6 +68,14 @@ select.form-control {
   border: 1px solid #ccc;
   box-sizing: border-box;
 }
+.form-select{
+  width: 250px;
+  padding: 2px 8px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
 
 textarea.form-control {
   width: 250px;
