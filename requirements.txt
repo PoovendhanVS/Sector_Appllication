@@ -1,0 +1,7 @@
+# pip package used to download below pakages
+
+# install to use:
+
+Django==3.2.8
+mysqlclient==2.1.0
+xhtml2pdf==0.2.5
